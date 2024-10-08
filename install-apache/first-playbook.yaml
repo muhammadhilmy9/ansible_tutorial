@@ -1,0 +1,23 @@
+---
+- name: Install Apache on RHEL using ansible.builtin
+  hosts: all
+  become: true
+  tasks: 
+    - name: Install Apache httpd package
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+
+    - name: start and enable apache service
+      ansible.builtin.service:
+        name: httpd
+        enabled:  yes
+        state:  started
+
+    - name: copy file with owner and permissions
+      ansible.builtin.copy:
+        src: /root/ansible_tutorial/install-apache/index.html
+        dest: /var/www/html
+        owner:  root
+        group:  root
+        mode: '0644'
