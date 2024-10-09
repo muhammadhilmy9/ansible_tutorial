@@ -1,0 +1,18 @@
+---
+# tasks file for httpd
+- name: Install Apache httpd package
+  ansible.builtin.yum:
+    name: httpd
+    state: present
+- name: start and enable apache service
+  ansible.builtin.service:
+    name: httpd
+    enabled:  yes
+    state:  started
+- name: copy file with owner and permissions
+  ansible.builtin.copy:
+    src: /root/ansible_tutorial/ansible-role/httpd/files/index.html
+    dest: /var/www/html
+    owner:  root
+    group:  root
+    mode: '0644'

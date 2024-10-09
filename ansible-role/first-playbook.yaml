@@ -1,0 +1,11 @@
+---
+- name: Install Apache on RHEL using ansible.builtin
+  hosts: all
+  become: true
+  roles:
+   - httpd     
+
+
+
+
+          
